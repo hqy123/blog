@@ -1,0 +1,36 @@
+doctype html
+html
+	head
+		title= 'notes'
+		link(rel='stylesheet', href="/simditor/simditor.css")
+		link(rel='stylesheet', href='/bootstrap-3.3.7/css/bootstrap.min.css')
+		script(rel='javascript', src='/javascripts/jquery.min.js')
+		script(rel='javascript', src='/simditor/module.js')
+		script(rel='javascript', src='/simditor/hotkeys.js')
+		script(rel='javascript', src='/simditor/uploader.js')
+		script(rel='javascript', src='/simditor/simditor.js')
+		style.
+			.row{
+				width:1000px;
+				overflow:hidden;
+				margin:20px auto;
+			}
+			.simditor-body{
+				max-height:500px;
+				overflow-y:scroll;
+			}
+	body
+		div.row
+			form(role='form', method="post", action="/notes/save")
+				div.form-group
+					label 标题
+					input.form-control(placeholder="title", name='title')
+				div.form-group
+					label 内容
+					textarea#editor.form-control(name="content")
+				div.form-gruop.col-sm-offset-5
+					button.btn.btn-default(type="submit") submit
+script.
+	var editor = new Simditor({
+		textarea: $('#editor')
+	});

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+	div#content 
+		ul.data-item
+			each item in data
+				li.items
+					div.items-l
+						div.data
+							i.fa.fa-calendar
+							span Dec 29, 2011
+						div.comments
+							i.fa.fa-comments
+							span 20 comments
+					div.items-r
+						h1.title
+							a(href="/notes/page?id=#{item.id}")  #{item.title}
+						h2.describe Low Cost, Scalable, Distributed & Above All: Personalized
+						div.summary  #{item.content}
+			li.items
+				div.items-l
+				div.items-r
+					nav(aria-label="Page navigation")
+						ul.pagination
+							li
+								a(href="", aria-label="Previous")
+									span(aria-hidden="true")&laquo;
+							li
+								a(href="") 11
+							li
+								a(href="#", aria-label="Next")
+									span(aria-hidden="true")&raquo;
+	

@@ -1,0 +1,14 @@
+doctype html
+html
+	head
+		title= 'blog'		
+		link(rel='stylesheet', href='/stylesheets/reset.css')
+		link(rel='stylesheet', href='/bootstrap-3.3.7/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/font-awesome-4.7.0/css/font-awesome.min.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(rel='javascript', src='/javascripts/jquery.min.js')
+		block style
+	body
+		include ./header.jade
+		block content
+		include ./footer.jade

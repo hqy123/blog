@@ -1,0 +1,39 @@
+extends ../layout
+block style
+	style.
+		.container{
+			width:1000px;
+			margin:0 auto;
+			overflow:hidden;
+			padding:50px 10px;
+			min-height:400px;
+		}
+		.container h1{
+			text-align:center;
+			font-size:30px;
+			font-familt:'宋体';
+			line-height:50px;
+		}
+		.content{
+			overflow:hidden;
+			padding:40px 0;
+		}
+		.main{
+			width: 700px;
+			overflow:hidden;
+			float:left
+		}
+		.slid-nav{
+			width:260px;
+			height:200px;
+			float:right;
+			background:yellow;
+		}
+
+
+block content
+	div.container
+		div.main
+			h1 #{data[0].title}
+			div.content !{data[0].content}
+		div.slid-nav
