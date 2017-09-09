@@ -10,21 +10,21 @@ router.get('/', function(req, res, next) {
   function getData(db, callback){
     var notes = db.collection('notes');
     var page  = req.query.page || 1;
-    var num   = 5;
+    var pageSize   = 2;
     var totalPage = 0;
 
 
     async.waterfall([
         function(callback){
           notes.count({},function(err, result){
-            totalPage = Math.ceil(result/num);
+            totalPage = Math.ceil(result/pageSize);
             if(page<1) page = 1;
             else if(page>totalPage) page = totalPage;
             callback(null, page);
           })      
         },
         function(page, callback){
-            notes.find({}).skip((page-1)*num).limit(num).toArray(function(err, result){
+            notes.find({}).skip((page-1)*pageSize).limit(pageSize).toArray(function(err, result){
               if(err){
                 console.log(err);  return;
               }
@@ -37,20 +37,23 @@ router.get('/', function(req, res, next) {
         }
       ],function(err, result){
           if(err) console.log(err);       
-          callback(result);
+          callback(result, totalPage, page);
     })
     
     
 
   }
   MongoClient.connect(DB_CONN_STR, function(err,db){
-  	getData(db, function(result){    
+  	getData(db, function(result, totalPage, page){    
   		db.close();
 
       res.render('index', { 
         title: 'Express' ,
         username: req.session.username,
-        data: result
+        data: result,
+        nextPage: page+1,
+        prevPage: page-1,
+        totalPage: totalPage
       })
   	})
   })
