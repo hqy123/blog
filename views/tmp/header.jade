@@ -1,0 +1,21 @@
+div#header
+	div.logo
+		if username
+			i.fa.fa-paw.fa-4x.fa-f.active-logo
+		else
+			i.fa.fa-paw.fa-4x.fa-f
+	div.user
+		if username
+			a(href='/notes')
+				i.fa.fa-smile-o  
+				span #{username}
+			a(href='/users/signOut')
+				i.fa.fa-sign-out 
+				span sign out
+		else 
+			a(href='/users/register')
+				i.fa.fa-cog.fa-spin
+				span 注册
+			a(href='/users/login')
+				i.fa.fa-cog.fa-spin
+				span 登录

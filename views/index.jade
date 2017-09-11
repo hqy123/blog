@@ -1,4 +1,4 @@
-extends layout
+extends ./tmp/layout
 
 block content
 	div#content 
@@ -8,7 +8,7 @@ block content
 					div.items-l
 						div.data
 							i.fa.fa-calendar
-							span Dec 29, 2011
+							span #{item.addtime}
 						div.comments
 							i.fa.fa-comments
 							span 20 comments
@@ -21,6 +21,8 @@ block content
 				div.items-l
 				div.items-r
 					nav(aria-label="Page navigation")
+						- var prevPage = page-1;
+						- var nextPage = parseInt(page)+1;
 						ul.pagination 
 							li
 								a(href="/?page=#{prevPage}", aria-label="Previous")

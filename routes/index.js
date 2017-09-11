@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   function getData(db, callback){
     var notes = db.collection('notes');
     var page  = req.query.page || 1;
-    var pageSize   = 2;
+    var pageSize   = 5;
     var totalPage = 0;
 
 
@@ -30,7 +30,11 @@ router.get('/', function(req, res, next) {
               }
               for(item in result) {
                 result[item].content = result[item].content.replace(/<[^>]+>/g,'').substring(0,200)+'[...]';
-                result[item].title   = result[item].title + '  »' ;
+                if(!result[item].addtime){
+                  result[item].addtime = getTime(0);
+                } else{
+                  result[item].addtime = getTime(result[item].addtime);
+                }
               }
               callback(null, result);
             })
@@ -51,8 +55,7 @@ router.get('/', function(req, res, next) {
         title: 'Express' ,
         username: req.session.username,
         data: result,
-        nextPage: page+1,
-        prevPage: page-1,
+        page: page,
         totalPage: totalPage
       })
   	})
@@ -62,3 +65,17 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
+function getTime(time){
+  time = new Date(time);
+  const Mon=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Spt","Oct","Nov","Dec");
+  let y = time.getFullYear();
+  let m = time.getMonth();
+  let d = time.getDate();
+  // let H = time.getHours();
+  // let M = time.getMinutes();
+  // let S = time.getSeconds();
+
+  let date = `${Mon[m]} ${d}, ${y}`;
+  return date;
+}

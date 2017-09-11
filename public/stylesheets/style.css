@@ -11,9 +11,20 @@ body{
 	padding-top:30px;
 }
 #header .logo{
-	width: 60px;
 	overflow: hidden;
 	float: left;
+}
+
+#header .logo i{
+	color: #e2e2e2;
+}
+#header .logo .active-logo{
+	color: #000;
+	-webkit-animation:logo 5s;
+}
+@-webkit-keyframes logo{
+	from {color:#e2e2e2;transform: rotate(0deg);}
+	to{ color:#000; transform: rotate(360deg);}
 }
 #header .user{
 	float: right;
@@ -52,7 +63,6 @@ body{
 }
 .items .items-l  span{
 	padding-left: 10px;
-	font-family: "微软雅黑";
 	font-size: 12px;
 }
 
@@ -61,14 +71,15 @@ body{
 	overflow: hidden;
 	float: right;
 }
-.items .items-r a{
-	font-family: "黑体"
+.items .items-r .title {
+	margin-top:0;
 }
 .items .items-r .title a{
 	font-size: 34px;
 	font-weight:bold;
 	text-decoration: none;
 	color: #000;
+	font-family: KaiTi;
 }
 
 .items .items-r .title a:hover{
@@ -78,12 +89,15 @@ body{
 .items .items-r .describe{
 	margin: 20px 0;
 	font-weight:bold;
+	font-family:KaiTi;
+	display: none;
 }
 .items .items-r .summary{
 	width: 700px;
-	font-family: "微软雅黑";
 	line-height:25px;
 	color: #666;
+	font-family: KaiTi;
+	font-weight: bold;
 }
 
 #footer{

@@ -28,7 +28,10 @@ router.get('/page', function(req,res){
 	MongoClient.connect(DB_CONN_STR,function(err,db){
 		getOnePage(db,function(result){
 			db.close()
-			res.render('./notes/page',{data:result});
+			res.render('./notes/page',{
+				data:result,
+				username:req.session.username
+			});
 		})
 	})
 	
@@ -37,38 +40,26 @@ router.get('/page', function(req,res){
 router.post('/save',function(req, res) {
 	var data = {
 		title: req.body.title,
-		content: req.body.content
+		content: req.body.content,
+		addtime: new Date().getTime()
 	};
-	var note_id;
 	MongoClient.connect(DB_CONN_STR, function(err, db){
-		console.log('db connect success!!!!');
-		var noteId = db.collection('noteId');
-		var notes  = db.collection('notes');
+		const noteId = db.collection('ids');
+		const notes  = db.collection('notes');
 
+		const options = [{name:"note"},{_id:1},{$inc:{id:1}},{new:true}];
 		async.waterfall([
 			function (callback){
-				noteId.find().toArray(function(err, result){
-					if(err){
+				noteId.findAndModify(...options)
+					.then(response=>{
+						callback(null, response.value.id)
+					},err=>{
 						console.log(err);
-						return;
-					}
-					var note_id = result1[0].id;
-					callback(null, note_id);
-				 })
-				
+					})
 			},
 			function(note_id, callback){
 				data.id = note_id;
 				notes.save(data,function(err,result){
-					if(err){
-						console.log(err);
-						return;
-					}
-				})
-				callback(null);
-			},
-			function (callback){
-				noteId.update({},{$inc:{id:1}},function(err,result){
 					if(err){
 						console.log(err);
 						return;
