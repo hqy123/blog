@@ -106,3 +106,7 @@ body{
 	background: #ffdf1f;
 	
 }
+#footer p {
+	text-align: center;
+	line-height: 60px;
+}
