@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   function getData(db, callback){
     var notes = db.collection('notes');
     var page  = req.query.page || 1;
-    var pageSize   = 5;
+    var pageSize   = 7;
     var totalPage = 0;
 
 

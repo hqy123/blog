@@ -51,8 +51,8 @@ router.post('/save',function(req, res) {
 		async.waterfall([
 			function (callback){
 				noteId.findAndModify(...options)
-					.then(response=>{
-						callback(null, response.value.id)
+					.then(result=>{
+						callback(null, result.value.id)
 					},err=>{
 						console.log(err);
 					})
