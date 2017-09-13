@@ -26,11 +26,11 @@ block content
 						ul.pagination 
 							li
 								a(href="/?page=#{prevPage}", aria-label="Previous")
-									span(aria-hidden="true")&laquo;
+									span(aria-hidden="true") &laquo;
 							- for(let i =1; i<= totalPage; i++)
 								li
 									a(href="/?page=#{i}") #{i}
 							li
 								a(href="/?page=#{nextPage}", aria-label="Next")
-									span(aria-hidden="true")&raquo;
+									span(aria-hidden="true") &raquo;
 	
