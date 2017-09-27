@@ -29,42 +29,44 @@ block content
 							li
 								a(href="/?page=#{prevPage}", aria-label="Previous")
 									span(aria-hidden="true") &laquo;
-
 							li
 								a(href="/?page=1", aria-label="Previous")
 									span(aria-hidden="true") 1
+							-if(totalPage>10 && nowPage>5)
+								li 
+									a(href="javascript:void(0)", aria-label="Previous") ......
+
 
 							- if(totalPage<10)
 								- for(let i=2; i<= totalPage; i++)
 									li
 										a(href="/?page=#{i}") #{i}
-							- else if(totalPage>10 && nowPage>5)
-								li 
-									a(href="javascript:void(0)", aria-label="Previous") ......
-								- for(let i = page-4; i<page; i++)
-									li
-										a(href="/?page=#{i}") #{i}
-								- if(nowPage+4>totalPage)
-									- for(let i=nowPage+1; i< totalPage; i++)
-										li
-											a(href="/?page=#{i}") #{i}
-								- else
-									- for(let i=nowPage; i<nowPage+4; i++)
-										li
-											a(href="/?page=#{i}") #{i}
-							- else if(totalPage>10 && page<=5)
+							- else if(totalPage>10 && nowPage<=5)
 								- for(let i=2; i<= 9; i++)
 									li
 										a(href="/?page=#{i}") #{i}
 
-							- if(totalPage>10)
+
+
+							- else if(totalPage>10 && nowPage>5)
+								- if(nowPage+4>totalPage)
+									- for(let i=nowPage-8; i<totalPage; i++)
+										li
+											a(href="/?page=#{i}") #{i}
+								- else
+									- for(let i=nowPage-4; i<nowPage+4; i++)
+										li
+											a(href="/?page=#{i}") #{i}
+							
+
+							- if(totalPage>10&& page < totalPage-1)
 								li 
-									a(href="javascript:void(0)", aria-label="Previous")  ......		
+									a(href="javascript:void(0)", aria-label="Previous")  ......	
+
+							- if(totalPage>10)
 								li
 									a(href="/?page=#{totalPage}", aria-label="Previous")
 										span(aria-hidden="true") #{totalPage}
-
-
 							li
 								a(href="/?page=#{nextPage}", aria-label="Next")
 									span(aria-hidden="true") &raquo;

@@ -1,9 +1,9 @@
-var express = require('express');
-var async = require('async');
-var router = express.Router();
+const express = require('express');
+const async = require('async');
+const router = express.Router();
 
-var MongoClient = require('mongodb').MongoClient;
-var DB_CONN_STR = 'mongodb://127.0.0.1:27017/blog';
+const MongoClient = require('mongodb').MongoClient;
+const DB_CONN_STR = 'mongodb://127.0.0.1:27017/blog';
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -23,16 +23,16 @@ router.get('/register', function(req,res){
 
 //注册接口
 router.post('/signUp', function(req, res) {
-	const userData = {
+	let userData = {
 		username: req.body.username,
 		password: req.body.password
 	};
 
 	MongoClient.connect(DB_CONN_STR, function(err, db) {
-		const user = db.collection('users');
-		const userId = db.collection('ids');
+		let user = db.collection('users');
+		let userId = db.collection('ids');
 
-		const options = [{name:'user'},{_id:1},{$inc:{id:1}},{new:true}];
+		let options = [{name:'user'},{_id:1},{$inc:{id:1}},{new:true}];
 		async.waterfall([
 			function(callback){
 				//查询用户名有没有被注册过
@@ -81,12 +81,12 @@ router.post('/signUp', function(req, res) {
 
 //登录接口
 router.post('/signIn', function(req, res){
-	var username = req.body.username;
-	var password = req.body.password;
+	let username = req.body.username;
+	let password = req.body.password;
 
 	function findUser(db, callback){
-		 var collection = db.collection('users');
-		 var data = {
+		 let collection = db.collection('users');
+		 let data = {
 			username: username, 
 			password: password
 	     };

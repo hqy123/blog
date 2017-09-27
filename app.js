@@ -32,7 +32,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { 
   	secure: false,
-  	maxAge: new Date().getTime()+1000*60*20
+  	maxAge: 1000*60*20
   }
 }));
 

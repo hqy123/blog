@@ -1,17 +1,17 @@
-var express = require('express');
-var router  = express.Router();
-var async   = require('async');
+const express = require('express');
+const router  = express.Router();
+const async   = require('async');
 
-var MongoClient = require('mongodb').MongoClient;
-var DB_CONN_STR = 'mongodb://127.0.0.1:27017/blog';
+const MongoClient = require('mongodb').MongoClient;
+const DB_CONN_STR = 'mongodb://127.0.0.1:27017/blog';
 /* GET home page. */
 router.get('/', function(req, res, next) {
   
   function getData(db, callback){
-    var notes = db.collection('notes');
-    var page  = req.query.page || 1;
-    var pageSize   = 4;
-    var totalPage = 0;
+    let notes = db.collection('notes');
+    let page  = req.query.page || 1;
+    let pageSize   = 7;
+    let totalPage = 0;
 
 
     async.waterfall([

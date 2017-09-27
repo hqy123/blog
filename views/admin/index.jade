@@ -21,17 +21,12 @@ block content
 								th createtime
 								th delete
 						tbody
-							tr
-								td 1
-								td dell 灵越燃 7000 这款电脑怎么样
-								td 2017-03-15 17:44:14 +08:00
-								td 
-									a.btn-sm.btn-danger(href="#") 删除
-							tr
-								td 1
-								td dell 灵越燃 7000 这款电脑怎么样
-								td 2017-03-15 17:44:14 +08:00
-								td 
-									a.btn-sm.btn-danger(href="#") 删除
+							each item in data
+								tr
+									td #{item.id}
+									td #{item.title}
+									td #{item.addtime}
+									td 
+										a.btn-sm.btn-danger(href="#") 删除
 		div.slide-bar.col-md-3
 		
