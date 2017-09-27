@@ -1,5 +1,37 @@
 extend ../tmp/layout
-
+block style
+	link(rel="stylesheet" href="/stylesheets/admin.css")
 block content
-	div.row.main
+	div.content.container
+		div.main.col-md-9
+			div.top-info
+				div.profile-photo
+					img(src="/images/m1.jpg")
+
+				h4 null-cheng
+				span   V2EX 第 221167 号会员，加入于 2017-03-15 17:44:14 +08:00，今日活跃度排名 1132
+			div.theme.panel.panel-default
+				div.panel-heading 我的主题
+				div.panel-body.theme-container
+					table.table.table-hover
+						thead
+							tr 
+								th #
+								th title
+								th createtime
+								th delete
+						tbody
+							tr
+								td 1
+								td dell 灵越燃 7000 这款电脑怎么样
+								td 2017-03-15 17:44:14 +08:00
+								td 
+									a.btn-sm.btn-danger(href="#") 删除
+							tr
+								td 1
+								td dell 灵越燃 7000 这款电脑怎么样
+								td 2017-03-15 17:44:14 +08:00
+								td 
+									a.btn-sm.btn-danger(href="#") 删除
+		div.slide-bar.col-md-3
 		
